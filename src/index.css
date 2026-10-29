@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+.font-jakarta {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+.font-manrope {
+  font-family: 'Manrope', sans-serif;
+}
+.font-dmsans {
+  font-family: 'DM Sans', sans-serif;
+}
+.font-playfair {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+.font-merriweather {
+  font-family: 'Merriweather', Georgia, serif;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* A4 Print Optimization */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  html, body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only-container {
+    display: block !important;
+    position: static !important;
+    width: 210mm !important;
+    margin: 0 auto !important;
+  }
+  .a4-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: hidden !important;
+  }
+}

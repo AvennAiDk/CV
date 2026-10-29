@@ -1,0 +1,6 @@
+{
+  "name": "JobStep CV - Creador Profesional de Currículums",
+  "description": "Crea, personaliza y descarga tu currículum profesional en PDF en minutos con plantillas modernas y elegantes inspiradas en JobStep.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
