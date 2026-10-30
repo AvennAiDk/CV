@@ -15,6 +15,7 @@ import { PreviewWorkspace } from './components/Preview/PreviewWorkspace';
 import { ProgressBar } from './components/ProgressBar';
 import { PDFExportModal } from './components/PDFExportModal';
 import { ResetConfirmModal } from './components/ResetConfirmModal';
+import { PublishModal } from './components/PublishModal';
 import { TemplateId } from './types/cv';
 import { FileEdit, Palette, Layout, Eye, CheckCircle2 } from 'lucide-react';
 
@@ -34,6 +35,9 @@ export default function App() {
 
   const [currentView, setCurrentView] = useState<'landing' | 'app'>('landing');
   const [activeTab, setActiveTab] = useState<'editor' | 'templates' | 'design' | 'preview'>('editor');
+
+  // Publish / Share modal state
+  const [showPublishModal, setShowPublishModal] = useState(false);
 
   // PDF generation state
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
@@ -134,6 +138,7 @@ export default function App() {
         isGeneratingPDF={isGeneratingPDF}
         lastSaved={lastSaved}
         completionScore={completionStats.percentage}
+        onOpenPublish={() => setShowPublishModal(true)}
       />
 
       {/* Main View Router */}
@@ -143,6 +148,7 @@ export default function App() {
           onSelectTemplate={handleSelectTemplateFromLanding}
           onContinueEditing={handleContinueEditing}
           hasSavedData={Boolean(cvData.personal.fullName)}
+          onOpenPublish={() => setShowPublishModal(true)}
         />
       ) : (
         <main className="flex-1 max-w-[1600px] w-full mx-auto p-4 sm:p-6 lg:p-8 no-print">
@@ -257,6 +263,12 @@ export default function App() {
         isOpen={showResetModal}
         onConfirm={handleConfirmReset}
         onCancel={() => setShowResetModal(false)}
+      />
+
+      {/* Publish & Share Modal */}
+      <PublishModal
+        isOpen={showPublishModal}
+        onClose={() => setShowPublishModal(false)}
       />
     </div>
   );

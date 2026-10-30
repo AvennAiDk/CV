@@ -7,6 +7,7 @@ interface LandingHeroProps {
   onSelectTemplate: (templateId: TemplateId) => void;
   onContinueEditing: () => void;
   hasSavedData: boolean;
+  onOpenPublish?: () => void;
 }
 
 const previewCards: { id: TemplateId; name: string; tag: string; description: string; color: string }[] = [
@@ -44,16 +45,29 @@ export const LandingHero: React.FC<LandingHeroProps> = ({
   onStartFromScratch,
   onSelectTemplate,
   onContinueEditing,
-  hasSavedData
+  hasSavedData,
+  onOpenPublish
 }) => {
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col justify-between bg-gradient-to-b from-white via-neutral-50/50 to-neutral-100/60 p-6 md:p-12">
       <div className="max-w-6xl mx-auto w-full pt-4 pb-12">
         {/* Main Hero Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-100 rounded-full text-xs font-semibold text-neutral-700">
-            <Zap className="w-3.5 h-3.5 text-blue-600" />
-            <span>Creador de CV inspirado en JobStep.io</span>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-100 rounded-full text-xs font-semibold text-neutral-700">
+              <Zap className="w-3.5 h-3.5 text-blue-600" />
+              <span>Creador de CV inspirado en JobStep.io</span>
+            </div>
+            {onOpenPublish && (
+              <button
+                type="button"
+                onClick={onOpenPublish}
+                className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-full text-xs font-semibold text-emerald-800 transition-colors cursor-pointer"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>En línea · Publicar y Compartir Gratis</span>
+              </button>
+            )}
           </div>
 
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 leading-tight">

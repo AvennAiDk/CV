@@ -9,7 +9,8 @@ import {
   Palette, 
   Layout, 
   CheckCircle2,
-  ChevronDown
+  ChevronDown,
+  Globe
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -22,6 +23,7 @@ interface NavbarProps {
   isGeneratingPDF: boolean;
   lastSaved: Date | null;
   completionScore: number;
+  onOpenPublish: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -33,7 +35,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onLoadSample,
   isGeneratingPDF,
   lastSaved,
-  completionScore
+  completionScore,
+  onOpenPublish
 }) => {
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
 
@@ -146,6 +149,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                   type="button"
                   onClick={() => {
                     setShowOptionsDropdown(false);
+                    onOpenPublish();
+                  }}
+                  className="w-full text-left px-3 py-2 hover:bg-neutral-50 flex items-center gap-2 text-emerald-700 font-semibold cursor-pointer"
+                >
+                  <Globe className="w-3.5 h-3.5 text-emerald-600" />
+                  Publicar gratis / Compartir
+                </button>
+                <div className="my-1 border-t border-neutral-100" />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowOptionsDropdown(false);
                     onPrint();
                   }}
                   className="w-full text-left px-3 py-2 hover:bg-neutral-50 flex items-center gap-2 text-neutral-700 cursor-pointer"
@@ -156,6 +171,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             )}
           </div>
+
+          {/* Publicar gratis button */}
+          <button
+            type="button"
+            onClick={onOpenPublish}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition-colors cursor-pointer"
+            title="Ver enlace público o publicar en Vercel / Netlify"
+          >
+            <Globe className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Publicar gratis</span>
+          </button>
 
           {/* Primary CTA: Descargar PDF */}
           <button
